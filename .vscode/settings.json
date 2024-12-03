@@ -1,0 +1,8 @@
+{
+    "julia.environmentPath": "${workspaceFolder}/envs/dev",
+    "julia.executablePath": "${workspaceFolder}/jl",
+    "julia.additionalArgs": [
+        // "--nsys",
+        // "--color=yes",
+    ]
+}
