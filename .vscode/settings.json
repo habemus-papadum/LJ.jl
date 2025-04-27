@@ -1,5 +1,5 @@
 {
-    "julia.environmentPath": "${workspaceFolder}/envs/dev",
+    "julia.environmentPath": "/home/nehal/src/LJ.jl/scribbles/CudaMay25",
     "julia.executablePath": "${workspaceFolder}/jl",
     "julia.additionalArgs": [
         // "--nsys",
