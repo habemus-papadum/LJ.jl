@@ -1,5 +1,5 @@
 module LJ
 
-greet() = print("Hello World!")
+greet() = print("He llo World!")
 
 end # module LJ
