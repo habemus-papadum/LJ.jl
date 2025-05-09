@@ -24,6 +24,16 @@ begin
     using CUDA, Colors, ColorMatrixConvention, PlutoUI
 end
 
+# ╔═╡ 04f0e217-2498-40c8-8f6a-93f7d71613f0
+
+
+# ╔═╡ e865478b-7892-40a8-87b0-a7fe64adc5cc
+begin
+	struct Literal{T} end
+    Base.:(*)(x, ::Type{Literal{T}}) where {T} = T(x)
+    const i32 = Literal{Int32}
+end
+
 # ╔═╡ 8db812b4-820a-4291-b8c0-b3dc29b526df
 begin
 	function generate_kernel(f, img)
@@ -50,10 +60,7 @@ begin
 end
 
 # ╔═╡ 4aacf788-6536-4c4b-a8e3-774e16ed2a12
-@bind x Slider(50:100)
-
-# ╔═╡ 04f0e217-2498-40c8-8f6a-93f7d71613f0
-
+@bind x Slider(100:600, 400, true)
 
 # ╔═╡ e4f0003f-b72e-4307-aef9-ccd60b177073
 let 
@@ -65,9 +72,42 @@ let
     b
 end
 
+# ╔═╡ 13a58ea5-e23d-4a65-b7e2-b57dfad504d8
+shader(i,j, r, c) = begin
+        i, ii = divrem(i, 100i32)
+        j, jj = divrem(j, 100i32)
+        if i == 1 && j == 2 && (ii < 3 || jj < 3 || ii > 97 || jj > 97)
+            return colorant"white" 
+        end
+
+        x  =  Float32(ii - 50i32) / 50.0f0
+        y  =  Float32(jj - 50i32) / 50.0f0
+        x = abs(x)
+        y = abs(y)
+        if x  + y - 1.7f0 < 0.0f0
+        	if max(x,y) > 0.98
+                return colorant"black"
+            else
+                return colorant"salmon"
+            end
+        else 
+        	return colorant"steelblue"
+        end
+end
+
+# ╔═╡ eb07dfb9-c511-4132-8caa-b1c6800f8c7b
+let 
+    b = CuArray{RGB{Float32}}(undef, x,x)
+    generate(shader, b)
+    b
+end
+
 # ╔═╡ Cell order:
 # ╠═643c8fe6-23bf-11f0-3e1d-25bc6b806e2e
 # ╠═8db812b4-820a-4291-b8c0-b3dc29b526df
-# ╠═4aacf788-6536-4c4b-a8e3-774e16ed2a12
 # ╠═04f0e217-2498-40c8-8f6a-93f7d71613f0
 # ╠═e4f0003f-b72e-4307-aef9-ccd60b177073
+# ╠═e865478b-7892-40a8-87b0-a7fe64adc5cc
+# ╠═4aacf788-6536-4c4b-a8e3-774e16ed2a12
+# ╟─eb07dfb9-c511-4132-8caa-b1c6800f8c7b
+# ╠═13a58ea5-e23d-4a65-b7e2-b57dfad504d8
