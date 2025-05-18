@@ -2,7 +2,7 @@
 
 julia_version = "1.11.5"
 manifest_format = "2.0"
-project_hash = "667605d99ae3d4da392113e012b9a933a1526820"
+project_hash = "139855ac7ebbd40b176080e45af157bb7c843288"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -989,6 +989,12 @@ deps = ["InteractiveUtils", "Markdown", "UUIDs"]
 git-tree-sha1 = "072cdf20c9b0507fdd977d7d246d90030609674b"
 uuid = "0ff47ea0-7a50-410d-8455-4348d5de0774"
 version = "0.0.5"
+
+[[deps.PlutoImageCoordinatePicker]]
+deps = ["AbstractPlutoDingetjes", "Base64", "HypertextLiteral", "InteractiveUtils", "Markdown"]
+git-tree-sha1 = "0befd0746e8c8387afa36097731aae3cebc76116"
+uuid = "79686372-6169-7274-6170-6568746b6366"
+version = "1.4.1"
 
 [[deps.PlutoLinks]]
 deps = ["FileWatching", "InteractiveUtils", "Markdown", "PlutoHooks", "Revise", "UUIDs"]

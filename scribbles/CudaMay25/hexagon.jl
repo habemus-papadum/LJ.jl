@@ -22,7 +22,7 @@ begin
     Pkg.activate(Base.current_project())
     Pkg.instantiate()
     using CUDA, Colors, ColorMatrixConvention, PlutoUI, PlutoTeachingTools
-	using MarkdownLiteral
+	using MarkdownLiteral, PlutoImageCoordinatePicker
 end
 
 # ╔═╡ 52beaf71-98b0-4977-aff7-18202a48241f
@@ -157,6 +157,23 @@ let
 	""")
 end
 
+# ╔═╡ 759aa18d-954c-49d4-bfda-f28da08e4894
+let 
+    simple(i,j,r,c) = colorant"thistle"
+    
+    n = x
+    b = CuArray{RGB{Float32}}(undef, n,n)
+    generate(simple, b)
+    b
+	io = IOBuffer()
+	Base.show(io, MIME("image/png"), b)
+	bt = take!(io)
+	@bind coord ImageCoordinatePicker(bt, pointer_url=PlutoImageCoordinatePicker.Pointers.CrossInverted)
+end
+
+# ╔═╡ 525be509-1866-482b-bb0b-94181494494e
+coord
+
 # ╔═╡ Cell order:
 # ╠═6cf03aac-2d27-11f0-3bd2-bf8f7b71ec2a
 # ╠═a858012d-8601-4656-ad17-86fb112a3d73
@@ -165,5 +182,3 @@ end
 # ╠═9b9af897-4005-4dfc-bd14-e6fe6ca1c129
 # ╟─4385af19-011a-4640-8c6f-08f5fb173241
 # ╠═c5be21a6-820c-4a87-b129-63b6a6d3c9aa
-# ╠═f52eab6f-6bd0-4a51-9383-ddfe8114e5bd
-# ╟─29015af2-fa03-4bb1-82b4-20906a6f6fc0
