@@ -70,6 +70,9 @@ let
     b
 end
 
+# ╔═╡ f52eab6f-6bd0-4a51-9383-ddfe8114e5bd
+
+
 # ╔═╡ 29015af2-fa03-4bb1-82b4-20906a6f6fc0
 begin
 	const SQRT3_f32 = Float32(sqrt(3.0))          # ≈ 1.7320508f0
@@ -136,7 +139,7 @@ shader(i,j, r, c) = begin
 	(hii, hjj, hkk), (xx, yy) = local_coords(x, y, size = 2.0f0)
 	deg = atand(yy, xx)
 	if -30.0f0 <= deg < 30.0f0
-		return colorant"yellow"
+		return colorant"navy"
 	end
 	return RGB{Float32}(0.5f0 + hii/20.0f0, 
 						0.5f0 + hjj/20.0f0, 
@@ -162,4 +165,5 @@ end
 # ╠═9b9af897-4005-4dfc-bd14-e6fe6ca1c129
 # ╟─4385af19-011a-4640-8c6f-08f5fb173241
 # ╠═c5be21a6-820c-4a87-b129-63b6a6d3c9aa
-# ╠═29015af2-fa03-4bb1-82b4-20906a6f6fc0
+# ╠═f52eab6f-6bd0-4a51-9383-ddfe8114e5bd
+# ╟─29015af2-fa03-4bb1-82b4-20906a6f6fc0
